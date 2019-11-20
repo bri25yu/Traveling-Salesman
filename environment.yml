@@ -19,5 +19,12 @@ dependencies:
   - wheel=0.33.6=py38_0
   - xz=5.2.4=h1de35cc_4
   - zlib=1.2.11=h1de35cc_3
+  - pip:
+    - cffi==1.13.2
+    - decorator==4.4.1
+    - mip==1.5.3
+    - networkx==2.4
+    - numpy==1.17.4
+    - pycparser==2.19
 prefix: /usr/local/Caskroom/miniconda/base/envs/cs170-project
 
