@@ -65,6 +65,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
 
     model.objective = minimize(driving_cost + walking_cost)
 
+    # only take edges that exist
     for i in L:
         for j in L:
             if not G.has_edge(i, j):
@@ -73,18 +74,18 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     # we must visit the starting index
     for city in [starting_car_index]:
         # enter city once
-        model += xsum(edges_taken[i][city] for i in set(L) - {city}) == 1
+        model += xsum(edges_taken[i][city] for i in L) == 1
         # leave city once
-        model += xsum(edges_taken[city][j] for j in set(L) - {city}) == 1
+        model += xsum(edges_taken[city][j] for j in L) == 1
 
     # enter and exit city once (this can be removed I think, but need to adjust path following logic)
     for i in L:
-        model += xsum(edges_taken[incoming][i] for incoming in set(L) - {i}) <= 1
-        model += xsum(edges_taken[i][to] for to in set(L) - {i}) <= 1
+        model += xsum(edges_taken[incoming][i] for incoming in L) <= 1
+        model += xsum(edges_taken[i][to] for to in L) <= 1
 
     # enter city same number of times as we exist the city
     for i in L:
-        model += xsum(edges_taken[incoming][i] for incoming in set(L) - {i}) - xsum(edges_taken[i][to] for to in set(L) - {i}) == 0
+        model += xsum(edges_taken[incoming][i] for incoming in L) == xsum(edges_taken[i][to] for to in L)
 
     # no subtours (Miller-Tucker-Zemlin formulation)
     for (i, j) in set(product(set(L) - {0}, set(L) - {0})):
@@ -95,7 +96,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         model += visited_step[i] >= 0
         model += visited_step[i] <= nL - 1
 
-    # # every TA is dropped off at exactly one stop
+    # every TA is dropped off at exactly one stop
     for ta in tas:
         model += xsum(drop_ta_at_stop[ta][stop] for stop in L) == 1
 
@@ -106,7 +107,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
             for ta in tas
         )
 
-        stop_visited = xsum(edges_taken[incoming][stop] for incoming in set(L) - {stop})
+        stop_visited = xsum(edges_taken[incoming][stop] for incoming in L)
 
         # drops capped at 0 if not visited, number of TAs otherwise
         model += drops_at_stop <= stop_visited * nTas
