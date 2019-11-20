@@ -35,6 +35,8 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     for i in range(0, len(list_of_locations)):
         location_name_to_index[list_of_locations[i]] = i
 
+    tas = range(0, len(list_of_homes))
+    nTas = len(tas)
     home_indices = list(map(lambda home: location_name_to_index[home], list_of_homes))
 
     starting_car_index = location_name_to_index[starting_car_location]
@@ -49,19 +51,27 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
 
     edges_taken = [[model.add_var(var_type=BINARY) for j in L] for i in L]
     visited_step = [model.add_var() for i in L]
+    drop_ta_at_stop = [[model.add_var(var_type=BINARY) for stop in L] for ta in tas]
 
-    model.objective = minimize(
-        (2 / 3) * xsum(
-            G.edges[i, j]["weight"] * edges_taken[i][j] for i in L for j in L if G.has_edge(i, j)
-        )
+    driving_cost = (2 / 3) * xsum(
+        G.edges[i, j]["weight"] * edges_taken[i][j]
+        for i in L for j in L if G.has_edge(i, j)
     )
+
+    walking_cost = xsum(
+        shortest_paths[home_indices[ta]][stop] * drop_ta_at_stop[ta][stop]
+        for stop in L for ta in tas
+    )
+
+    model.objective = minimize(driving_cost + walking_cost)
 
     for i in L:
         for j in L:
             if not G.has_edge(i, j):
                 model += edges_taken[i][j] == 0
 
-    for city in [starting_car_index] + home_indices:
+    # we must visit the starting index
+    for city in [starting_car_index]:
         # enter city once
         model += xsum(edges_taken[i][city] for i in set(L) - {city}) == 1
         # leave city once
@@ -84,6 +94,22 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     for i in range(1, nL):
         model += visited_step[i] >= 0
         model += visited_step[i] <= nL - 1
+
+    # # every TA is dropped off at exactly one stop
+    for ta in tas:
+        model += xsum(drop_ta_at_stop[ta][stop] for stop in L) == 1
+
+    # only stops that are visited can have drops
+    for stop in L:
+        drops_at_stop = xsum(
+            drop_ta_at_stop[ta][stop]
+            for ta in tas
+        )
+
+        stop_visited = xsum(edges_taken[incoming][stop] for incoming in set(L) - {stop})
+
+        # drops capped at 0 if not visited, number of TAs otherwise
+        model += drops_at_stop <= stop_visited * nTas
 
     status = model.optimize()
     if model.num_solutions:
@@ -111,8 +137,11 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
                 path.append(next_city)
                 break
 
-        for home in list_of_homes:
-            dropoffs[location_name_to_index[home]] = [location_name_to_index[home]]
+        for ta in tas:
+            drop_off_stop = [i for i in L if drop_ta_at_stop[ta][i].x >= 0.99][0]
+            if not drop_off_stop in dropoffs:
+                dropoffs[drop_off_stop] = []
+            dropoffs[drop_off_stop].append(home_indices[ta])
 
         # verify that we actually used all the edges we took, because I'm not 100% confident
         # that the formulation works when we only need to visit a subset of nodes
