@@ -7,7 +7,7 @@ sys.path.append('../..')
 import argparse
 import utils
 import networkx as nx
-from mip import Model, xsum, minimize, BINARY, INTEGER
+from mip import Model, xsum, minimize, BINARY, INTEGER, GUROBI
 from itertools import product
 
 from student_utils import *
@@ -45,12 +45,16 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     nL = len(L)
 
     model = Model()
+    model.threads = 8
+
     edges_taken = [[model.add_var(var_type=BINARY) for j in L] for i in L]
     visited_step = [model.add_var() for i in L]
 
-    model.objective = minimize(xsum(
-        G.edges[i, j]["weight"] * edges_taken[i][j] for i in L for j in L if G.has_edge(i, j)
-    ))
+    model.objective = minimize(
+        (2 / 3) * xsum(
+            G.edges[i, j]["weight"] * edges_taken[i][j] for i in L for j in L if G.has_edge(i, j)
+        )
+    )
 
     for i in L:
         for j in L:
@@ -81,7 +85,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         model += visited_step[i] >= 0
         model += visited_step[i] <= nL - 1
 
-    status = model.optimize(max_seconds=300)
+    status = model.optimize(max_seconds=120)
     if model.num_solutions:
         print("Edges taken:")
         count = 0
