@@ -85,7 +85,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         model += visited_step[i] >= 0
         model += visited_step[i] <= nL - 1
 
-    status = model.optimize(max_seconds=120)
+    status = model.optimize()
     if model.num_solutions:
         print("Edges taken:")
         count = 0
