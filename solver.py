@@ -49,12 +49,12 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     model = Model()
     model.threads = 8
 
-    edges_taken = [[model.add_var(var_type=BINARY) for j in L] for i in L]
+    edge_taken = [[model.add_var(var_type=BINARY) for j in L] for i in L]
     visited_step = [model.add_var() for i in L]
     drop_ta_at_stop = [[model.add_var(var_type=BINARY) for stop in L] for ta in tas]
 
     driving_cost = (2 / 3) * xsum(
-        G.edges[i, j]["weight"] * edges_taken[i][j]
+        G.edges[i, j]["weight"] * edge_taken[i][j]
         for i in L for j in L if G.has_edge(i, j)
     )
 
@@ -69,87 +69,102 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     for i in L:
         for j in L:
             if not G.has_edge(i, j):
-                model += edges_taken[i][j] == 0
-
-    # we must visit the starting index
-    for city in [starting_car_index]:
-        # enter city once
-        model += xsum(edges_taken[i][city] for i in L) == 1
-        # leave city once
-        model += xsum(edges_taken[city][j] for j in L) == 1
-
-    # enter and exit city once (this can be removed I think, but need to adjust path following logic)
-    for i in L:
-        model += xsum(edges_taken[incoming][i] for incoming in L) <= 1
-        model += xsum(edges_taken[i][to] for to in L) <= 1
+                model += edge_taken[i][j] == 0
 
     # enter city same number of times as we exist the city
     for i in L:
-        model += xsum(edges_taken[incoming][i] for incoming in L) == xsum(edges_taken[i][to] for to in L)
+        model += xsum(edge_taken[incoming][i] for incoming in L) == xsum(edge_taken[i][to] for to in L)
 
-    # no subtours (Miller-Tucker-Zemlin formulation)
-    for (i, j) in set(product(set(L) - {0}, set(L) - {0})):
-        if i != j:
-            model += visited_step[i] - (nL + 1) * edges_taken[i][j] >= visited_step[j] - nL
+    if False: # MCF formulation
+        ta_over_edge = [[[model.add_var(var_type=BINARY) for ta in tas] for j in L] for i in L]
+        
+        # each TA gets dropped off at their stop
+        for node in (set(L) - {starting_car_index}):
+            for ta in tas:
+                ta_entering_node = xsum(
+                    ta_over_edge[prev][node][ta]
+                    for prev in L
+                )
 
-    for i in range(1, nL):
-        model += visited_step[i] >= 0
-        model += visited_step[i] <= nL - 1
+                ta_leaving_node = xsum(
+                    ta_over_edge[node][nxt][ta]
+                    for nxt in L
+                )
+
+                ta_dropped_at_stop = drop_ta_at_stop[ta][node]
+
+                model += ta_entering_node == ta_leaving_node + ta_dropped_at_stop
+
+        # each TA must be dropped off somewhere along the route
+        for ta in tas:
+            leaving_start = xsum(ta_over_edge[starting_car_index][nxt][ta] for nxt in L)
+            returning_start = xsum(ta_over_edge[prev][starting_car_index][ta] for prev in L)
+            model += leaving_start == 1 - drop_ta_at_stop[ta][starting_car_index] # drop TA off right before we leave
+            model += returning_start == 0
+
+        # if a TA goes over an edge, we must take it as well
+        for i in L:
+            for j in L:
+                for ta in tas:
+                    model += edge_taken[i][j] >= ta_over_edge[i][j][ta]
+    else: # SCF formulation
+        flow_over_edge = [[model.add_var(var_type=INTEGER) for j in L] for i in L]
+
+        # flow decreases only when TAs are dropped off
+        for node in (set(L) - {starting_car_index}):
+            tas_entering_node = xsum(
+                flow_over_edge[prev][node]
+                for prev in L
+            )
+
+            tas_leaving_node = xsum(
+                flow_over_edge[node][nxt]
+                for nxt in L
+            )
+
+            tas_dropped_at_stop = xsum(drop_ta_at_stop[ta][node] for ta in tas)
+
+            model += tas_entering_node == tas_leaving_node + tas_dropped_at_stop
+
+        # each TA must be dropped off somewhere along the route
+        leaving_start = xsum(flow_over_edge[starting_car_index][nxt] for nxt in L)
+        returning_start = xsum(flow_over_edge[prev][starting_car_index] for prev in L)
+        model += leaving_start == nTas - xsum(drop_ta_at_stop[ta][starting_car_index] for ta in tas)
+        model += returning_start == 0
+
+        # if flow goes over an edge, we must take it as well
+        for i in L:
+            for j in L:
+                model += edge_taken[i][j] * nTas >= flow_over_edge[i][j]
 
     # every TA is dropped off at exactly one stop
     for ta in tas:
         model += xsum(drop_ta_at_stop[ta][stop] for stop in L) == 1
 
-    # only stops that are visited can have drops
-    for stop in L:
-        drops_at_stop = xsum(
-            drop_ta_at_stop[ta][stop]
-            for ta in tas
-        )
-
-        stop_visited = xsum(edges_taken[incoming][stop] for incoming in L)
-
-        # drops capped at 0 if not visited, number of TAs otherwise
-        model += drops_at_stop <= stop_visited * nTas
-
+    print(model.constrs)
     status = model.optimize()
     if model.num_solutions:
+        edge_graph = nx.DiGraph()
         print("Edges taken:")
         count = 0
         for i in range(0, nL):
             for j in range(0, nL):
-                if (edges_taken[i][j].x >= 0.99):
+                if (edge_taken[i][j].x >= 0.99):
+                    edge_graph.add_edge(i, j)
                     print(i, j, G.edges[i, j]["weight"])
                     count += 1
         
         print("Path:")
-        next_city = starting_car_index
-        other_count = 0
-        path = []
+        path = [u for u, v in nx.eulerian_circuit(edge_graph, source=starting_car_index)] + [starting_car_index]
+        for node in path:
+            print(node)
+
         dropoffs = {}
-
-        while True:
-            print(next_city)
-            path.append(next_city)
-            next_city = [i for i in L if edges_taken[next_city][i].x >= 0.99][0]
-            other_count += 1
-            if next_city == starting_car_index:
-                print(next_city)
-                path.append(next_city)
-                break
-
         for ta in tas:
             drop_off_stop = [i for i in L if drop_ta_at_stop[ta][i].x >= 0.99][0]
             if not drop_off_stop in dropoffs:
                 dropoffs[drop_off_stop] = []
             dropoffs[drop_off_stop].append(home_indices[ta])
-
-        # verify that we actually used all the edges we took, because I'm not 100% confident
-        # that the formulation works when we only need to visit a subset of nodes
-        if count != other_count:
-            print(count)
-            print(other_count)
-            raise RuntimeError("SOMETHING WRONG")
         return (path, dropoffs)
 
     return ([], {})
