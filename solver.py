@@ -50,7 +50,6 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     model.threads = 8
 
     edge_taken = [[model.add_var(var_type=BINARY) for j in L] for i in L]
-    visited_step = [model.add_var() for i in L]
     drop_ta_at_stop = [[model.add_var(var_type=BINARY) for stop in L] for ta in tas]
 
     driving_cost = (2 / 3) * xsum(
@@ -74,6 +73,10 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     # enter city same number of times as we exist the city
     for i in L:
         model += xsum(edge_taken[incoming][i] for incoming in L) == xsum(edge_taken[i][to] for to in L)
+
+    # every TA is dropped off at exactly one stop
+    for ta in tas:
+        model += xsum(drop_ta_at_stop[ta][stop] for stop in L) == 1
 
     if False: # MCF formulation
         ta_over_edge = [[[model.add_var(var_type=BINARY) for ta in tas] for j in L] for i in L]
@@ -136,10 +139,6 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         for i in L:
             for j in L:
                 model += edge_taken[i][j] * nTas >= flow_over_edge[i][j]
-
-    # every TA is dropped off at exactly one stop
-    for ta in tas:
-        model += xsum(drop_ta_at_stop[ta][stop] for stop in L) == 1
 
     print(model.constrs)
     status = model.optimize()
