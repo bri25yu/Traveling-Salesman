@@ -5,6 +5,9 @@ from random import random, shuffle
 from math import floor, sqrt
 from decimal import Decimal
 from utils import write_to_file
+import utils
+from solver import solve, convertToFile
+from student_utils import data_parser, adjacency_matrix_to_graph, is_metric
 
 def random_subset(values, count: int):
   ret = []
@@ -58,4 +61,30 @@ if __name__ == '__main__':
   parser.add_argument('locations', type=int)
   parser.add_argument('tas', type=int)
   args = parser.parse_args()
-  write_to_file(str(args.locations) + ".in", generate_input(args.locations, args.tas))
+
+  while True:
+    write_to_file(str(args.locations) + ".in", generate_input(args.locations, args.tas))
+    input_file = str(args.locations) + ".in"
+    input_data = utils.read_file(input_file)
+    num_of_locations, num_houses, list_locations, list_houses, starting_car_location, adjacency_matrix = data_parser(input_data)
+    G, adj_message = adjacency_matrix_to_graph(adjacency_matrix)
+    if not is_metric(G):
+      print("not metric!")
+      continue
+
+    car_path, drop_offs = solve(list_locations, list_houses, starting_car_location, adjacency_matrix, params=[])
+    
+    seen = []
+    duplicate_found = False
+    for nxt in car_path[1:-1]:
+      if nxt in seen:
+        print("duplicate city found!", nxt)
+        duplicate_found = True
+        break
+      else:
+        seen.append(nxt)
+    
+    if duplicate_found:
+      output_file = str(args.locations) + ".out"
+      convertToFile(car_path, drop_offs, output_file, list_locations)
+      break
