@@ -43,6 +43,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
 
     (G, message) = adjacency_matrix_to_graph(adjacency_matrix)
     shortest_paths = nx.floyd_warshall(G)
+    shortest_paths_uw = nx.floyd_warshall(G, weight=None)
     L = range(0, len(list_of_locations))
     nL = len(L)
 
@@ -138,7 +139,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         # if flow goes over an edge, we must take it as well
         for i in L:
             for j in L:
-                shortest_path = shortest_paths[starting_car_index][i]
+                shortest_path = shortest_paths_uw[starting_car_index][i]
                 r_val = 0
                 for l in shortest_path:
                     if l in home_indices:
