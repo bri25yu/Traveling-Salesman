@@ -141,7 +141,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
                 model += edge_taken[i][j] * nTas >= flow_over_edge[i][j]
 
     print(model.constrs)
-    status = model.optimize(max_seconds=60*15)
+    status = model.optimize(max_seconds=60*30)
     if model.num_solutions > 0:
         edge_graph = nx.DiGraph()
         print("Edges taken:")
@@ -210,7 +210,7 @@ def solve_from_file(input_file, output_directory, params=[]):
     output_file = utils.input_to_output(input_file, output_directory)
     optimal_tracker = output_file + ".optimal"
 
-    existing_optimal = ((not os.path.exists(optimal_tracker)) or (utils.read_file(optimal_tracker)[0][0] == "True"))
+    existing_optimal = ((not os.path.exists(optimal_tracker)) or (utils.read_file(optimal_tracker)[0][0] == "True") or (utils.read_file(optimal_tracker)[0][0] == "Slow"))
     if os.path.exists(output_file) and existing_optimal:
         if not os.path.exists(optimal_tracker):
             utils.write_to_file(output_file + ".optimal", str(True))

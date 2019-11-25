@@ -1,21 +1,21 @@
-LeonieHill ChangiPoint SungeiKadut MonksHill Outram Sennett DefuIndustrialPark OrangeGrove NeeSoon JurongWestCentral Kranji Townsville Trafalgar Sentosa PasirRisPark SembawangSprings SungeiRoad ClarkeQuay KampongGlam ClarkeQuay Semakau YuhuaWestBoonLay TampinesWest PasirRisWestElias ChoaChuKangCentral LoyangEast Guilin GreenwoodPark FarrerPark Phillip Yishun BishanEast Ridout Changi CompassvaleTrafalgar PunggolTownCentre YishunCentral ClementiCentral ChangiWest AirportRoad Springleaf PasirPanjang2 TanjongRhu BukitBatokCentral MandaiWest YioChuKang MandaiWest NorthCoast AnchorvaleBuangkok KallangWay SungeiRoad Novena Clementi Victoria SerangoonGarden SingaporePolytechnic TuasBay TanglinHalt LeonieHill
-47
+LeonieHill ChangiPoint SungeiKadut KampongUbi Shipyard NeeSoon OrangeGrove DefuIndustrialPark OrangeGrove NeeSoon JurongWestCentral Kranji Sennett Outram MonksHill Townsville ChoaChuKangCentral LoyangEast YuhuaWestBoonLay TampinesWest Novena Clementi Victoria SerangoonGarden Lavender NorthCoast MandaiWest YioChuKang AnchorvaleBuangkok KallangWay SungeiRoad SembawangSprings PasirRisPark Sentosa Guilin GreenwoodPark FarrerPark Frankel Semakau WesternIslands PasirPanjang2 TanjongRhu GeylangBahru AirportRoad ChangiWest ClementiCentral YishunCentral PunggolTownCentre CompassvaleTrafalgar Changi Ridout BishanEast Yishun Phillip TanglinHalt TuasBay LeonieHill
+44
 Guilin Guilin
-Trafalgar Trafalgar
+GreenwoodPark Trafalgar GreenwoodPark
 Townsville Townsville
 SerangoonGarden SerangoonGarden
-Springleaf Springleaf
+GeylangBahru Springleaf
 ClementiCentral ClementiCentral
-Novena Novena
+Novena Novena SingaporePolytechnic
 FarrerPark FarrerPark
 SungeiKadut SungeiKadut
 YioChuKang Boulevard YioChuKang
 MonksHill MonksHill
 AirportRoad AirportRoad
 KallangWay KallangWay
-NeeSoon Shipyard NeeSoon
+Shipyard Shipyard
 YuhuaWestBoonLay YuhuaWestBoonLay
-SungeiRoad SungeiRoad
+SungeiRoad SungeiRoad KampongGlam
 TuasBay TuasBay
 Phillip Phillip
 TampinesWest TampinesWest
@@ -26,7 +26,7 @@ Victoria Victoria
 Ridout Ridout
 BishanEast BishanEast
 Yishun Yishun
-MandaiWest MandaiWest
+MandaiWest MandaiWest BukitBatokCentral
 PasirPanjang2 PasirPanjang2
 NorthCoast NorthCoast
 Semakau Semakau
@@ -35,15 +35,12 @@ Outram Outram
 Sentosa Sentosa
 OrangeGrove OrangeGrove
 TanglinHalt TanglinHalt
-BukitBatokCentral BukitBatokCentral
+NeeSoon NeeSoon
 ChoaChuKangCentral ChoaChuKangCentral
 CompassvaleTrafalgar ConeyIsland
 AnchorvaleBuangkok AnchorvaleBuangkok
 JurongWestCentral JurongWestCentral
 DefuIndustrialPark Tyersall DefuIndustrialPark
-KampongGlam KampongGlam
-GreenwoodPark GreenwoodPark
-SingaporePolytechnic SingaporePolytechnic
 YishunCentral Woodgrove
 ChangiWest ChangiWest
 LoyangEast LoyangEast
