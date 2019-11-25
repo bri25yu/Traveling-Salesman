@@ -7,7 +7,7 @@ sys.path.append('../..')
 import argparse
 import utils
 import networkx as nx
-from mip import Model, xsum, minimize, BINARY, INTEGER, GUROBI
+from mip import Model, xsum, minimize, BINARY, INTEGER, GUROBI, OptimizationStatus
 from itertools import product
 
 from student_utils import *
@@ -141,8 +141,8 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
                 model += edge_taken[i][j] * nTas >= flow_over_edge[i][j]
 
     print(model.constrs)
-    status = model.optimize()
-    if model.num_solutions:
+    status = model.optimize(max_seconds=15)
+    if model.num_solutions > 0:
         edge_graph = nx.DiGraph()
         print("Edges taken:")
         count = 0
@@ -153,10 +153,14 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
                     print(i, j, G.edges[i, j]["weight"])
                     count += 1
         
-        print("Path:")
-        path = [u for u, v in nx.eulerian_circuit(edge_graph, source=starting_car_index)] + [starting_car_index]
-        for node in path:
-            print(node)
+        if count == 0:
+            print("Path is empty")
+            path = [starting_car_index]
+        else:
+            print("Path:")
+            path = [u for u, v in nx.eulerian_circuit(edge_graph, source=starting_car_index)] + [starting_car_index]
+            for node in path:
+                print(node)
 
         dropoffs = {}
         for ta in tas:
@@ -164,9 +168,9 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
             if not drop_off_stop in dropoffs:
                 dropoffs[drop_off_stop] = []
             dropoffs[drop_off_stop].append(home_indices[ta])
-        return (path, dropoffs)
+        return (path, dropoffs, status == OptimizationStatus.OPTIMAL)
 
-    return ([], {})
+    return None
 
 
 """
@@ -200,20 +204,33 @@ def convertToFile(path, dropoff_mapping, path_to_file, list_locs):
 def solve_from_file(input_file, output_directory, params=[]):
     print('Processing', input_file)
 
-    input_data = utils.read_file(input_file)
-    num_of_locations, num_houses, list_locations, list_houses, starting_car_location, adjacency_matrix = data_parser(input_data)
-    car_path, drop_offs = solve(list_locations, list_houses, starting_car_location, adjacency_matrix, params=params)
-
     basename, filename = os.path.split(input_file)
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
     output_file = utils.input_to_output(input_file, output_directory)
+    optimal_tracker = output_file + ".optimal"
 
-    convertToFile(car_path, drop_offs, output_file, list_locations)
+    existing_optimal = ((not os.path.exists(optimal_tracker)) or (utils.read_file(optimal_tracker)[0][0] == "True"))
+    if os.path.exists(output_file) and existing_optimal:
+        if not os.path.exists(optimal_tracker):
+            utils.write_to_file(output_file + ".optimal", str(True))
+        print("Skipping, already solved optimal")
+    elif os.path.exists(output_file) and True:
+        print("Skipping non-optimal")
+    else:
+        input_data = utils.read_file(input_file)
+        num_of_locations, num_houses, list_locations, list_houses, starting_car_location, adjacency_matrix = data_parser(input_data)
+        sol = solve(list_locations, list_houses, starting_car_location, adjacency_matrix, params=params)
+        if sol:
+            car_path, drop_offs, is_optimal = sol
+            convertToFile(car_path, drop_offs, output_file, list_locations)
+            utils.write_to_file(output_file + ".optimal", str(is_optimal))
+        else:
+            print("no feasible solution")
 
 
 def solve_all(input_directory, output_directory, params=[]):
-    input_files = utils.get_files_with_extension(input_directory, 'in')
+    input_files = utils.get_files_with_extension(input_directory, params[0] + '.in')
 
     for input_file in input_files:
         solve_from_file(input_file, output_directory, params=params)

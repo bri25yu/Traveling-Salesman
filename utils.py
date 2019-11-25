@@ -9,7 +9,7 @@ def get_files_with_extension(directory, extension):
 
 
 def read_file(file):
-    with open(file, 'r') as f:
+    with open(file, 'r', encoding='utf-8') as f:
         data = f.readlines()
     data = [line.replace("Â", " ").strip().split() for line in data]
     return data
@@ -20,7 +20,7 @@ def write_to_file(file, string, append=False):
         mode = 'a'
     else:
         mode = 'w'
-    with open(file, mode) as f:
+    with open(file, mode, encoding='utf-8') as f:
         f.write(string)
 
 
@@ -29,7 +29,7 @@ def write_data_to_file(file, data, separator, append=False):
         mode = 'a'
     else:
         mode = 'w'
-    with open(file, mode) as f:
+    with open(file, mode, encoding='utf-8') as f:
         for item in data:
             f.write(f'{item}{separator}')
 
