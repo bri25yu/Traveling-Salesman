@@ -103,6 +103,9 @@ def tests(input_data, output_data, params=[]):
         message += "Your car must start and end at the same location.\n"
         cost = 'infinite'
 
+    if len(message) > 0:
+        raise RuntimeError("BOO!")
+
     if cost != 'infinite':
         cost, solution_message = cost_of_solution(G, car_cycle, dropoffs)
         message += solution_message
