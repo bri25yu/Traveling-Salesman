@@ -8,7 +8,7 @@ import argparse
 import utils
 from student_utils import *
 import input_validator
-
+import os
 
 def validate_output(input_file, output_file, params=[]):
     print('Processing', input_file)
@@ -38,9 +38,16 @@ def validate_all_outputs(input_directory, output_directory, params=[]):
             print(f'No corresponding .out file for {input_file}')
             results = (None, None, f'No corresponding .out file for {input_file}')
         else:
-            results = validate_output(input_file, output_file, params=params)
-
-        all_results.append((input_file, results))
+            if False: # delete invalid outputs
+                try:
+                    results = validate_output(input_file, output_file, params=params)
+                    all_results.append((input_file, results))
+                except:
+                    os.remove(output_file)
+                    os.remove(output_file + ".optimal")
+            else:
+                results = validate_output(input_file, output_file, params=params)
+                all_results.append((input_file, results))
     return all_results
 
 
