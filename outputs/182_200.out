@@ -1,6 +1,6 @@
-YuhuaEast DhobyGhaut Bishan DhobyGhaut LittleIndia KianTeck SenokoNorth PasirPanjang2 BukitBatokSouth WoodlandsWest Northland Mountbatten JurongPort JooSengPayaLebar JurongPort PeiChun DairyFarm PangSua Bedok YuhuaEast EvertonPark YuhuaEast Cairnhill YuhuaEast Trafalgar Moulmein Trafalgar AngMoKioTownCentre BukitTimah AngMoKioTownCentre Anson ClementiWest JurongWestCentral ClementiWest Anson OneNorth BoonLayPlace LowerSeletar PunggolField LowerSeletar TelokBlangahDrive Sennett NatureReserve Sennett Serangoon UluPandan Serangoon ClementiCentral Mandai ClementiCentral Sennett SerangoonGarden SingaporeRiver PotongPasir ChangiPoint TelokBlangahDrive YuhuaEast TampinesNorth Boulevard TampinesNorth YuhuaEast JurongWestCentral PasirRisDrive TohGuan PayaLebarEast MountPleasant PayaLebarEast TohGuan PasirRisDrive Geylang Paterson SimpangNorth Paterson Geylang Matilda OrangeGrove Shipyard SembawangStraits OneTreeHill ClementiNorth OneTreeHill HongKah CityHall BedokNorth IstanaNegara BedokNorth CityHall Kembangan LoyangEast InstitutionHill Chatsworth Commonwealth SungeiRoad Commonwealth Chatsworth InstitutionHill LoyangEast TuasNorthPioneer WestCoast SouthernIslands OneTreeHill SembawangStraits Shipyard OrangeGrove PeoplesPark OrangeGrove YuhuaEast SungeiKadut MandaiEast SungeiKadut HougangCentral Saujana ChinaSquare Sengkang ChoaChuKang PulauPunggolTimor YioChuKangEast UluPandan Dunearn SembawangHills YuhuaEast Punggol YuhuaEast ClarkeQuay BedokSouth YuhuaEast HollandDrive YioChuKang Aljunied YioChuKang HollandDrive ShangriLa TiongBahru TuasBay TiongBahru Bishan PayaLebarNorth SembawangEast PayaLebarNorth MountEmily KebunBahru Tampines PengSiang Tampines KebunBahru MountEmily GeylangEast PearlsHill YuhuaEast Sennett ChinaSquare SerangoonNorth TagoreSindo ChinaSquare Brickworks KampongUbi Brickworks Sembawang EastCoast Sentosa YuhuaEast
+YuhuaEast Sennett SerangoonGarden Sennett ChinaSquare SerangoonNorth TagoreSindo Sembawang NatureReserve MandaiWest Kranji PangSua DairyFarm PeiChun JurongPort HougangEast IstanaNegara BedokNorth ChengSan Mandai ChengSan BoonLayPlace LowerSeletar PearlsHill Woodgrove SungeiKadut HougangCentral Saujana BoatQuay Aljunied YioChuKang WaterwayEast SungeiRoad Commonwealth Chatsworth TuasNorthPioneer WestCoast SouthernIslands HongKahNorth KeatHong Dunearn UluPandan Sentosa TelokBlangahRise KampongUbi Brickworks Serangoon Trafalgar ClarkeQuay Shipyard SembawangStraits OneTreeHill HongKah Kembangan LoyangEast SenokoSouth ClementiNorth EvertonPark ReservoirView PulauPunggolTimor Paterson SimpangNorth Khatib BukitTimah KianTeck WoodlandsSouth ChangiPoint AngMoKioTownCentre Anson ClementiWest JurongWestCentral SerangoonCentral PasirPanjang2 BukitBatokSouth WoodlandsWest Northland Moulmein Museum PayaLebarEast TohGuan PasirRisDrive RochorCanal PasirPanjang1 KebunBahru Tampines KebunBahru MountEmily GeylangEast PunggolField TuasBay TiongBahru TuasPromenade Tanglin BenoiSector Punggol Matilda OrangeGrove PeoplesPark BayfrontSubzone CityHall TelokBlangahDrive YuhuaEast
 85
-Northland Northland
+Northland Northland Mountbatten
 HongKah HongKah UpperThomson
 AngMoKioTownCentre AngMoKioTownCentre
 SerangoonNorth SerangoonNorth
@@ -8,80 +8,80 @@ Paterson Paterson
 Punggol Punggol
 YioChuKang YioChuKang
 Commonwealth KentRidge Commonwealth
-Dunearn KeatHong
-SouthernIslands HongKahNorth SouthernIslands
+KeatHong KeatHong
+HongKahNorth HongKahNorth
 BedokNorth BedokNorth
 Serangoon Serangoon
 OneTreeHill OneTreeHill
-EastCoast EastCoast
+Sembawang EastCoast Sembawang
 Sennett Sennett
-SungeiRoad WaterwayEast SungeiRoad
+WaterwayEast WaterwayEast
 SungeiKadut SungeiKadut
-SembawangEast TuasPromenade
-PayaLebarEast Museum PayaLebarEast
-Mountbatten Mountbatten
+TuasPromenade TuasPromenade
+Museum Museum
+PayaLebarEast PayaLebarEast
 LowerSeletar LowerSeletar
-BedokSouth BedokSouth
+ClarkeQuay BedokSouth
 SembawangStraits SembawangStraits
 TuasNorthPioneer TuasNorthPioneer
 CityHall CityHall
-KampongUbi TelokBlangahRise Sentosa
-SimpangNorth SimpangNorth Khatib AlexandraNorth
+TelokBlangahRise TelokBlangahRise
+SungeiRoad SungeiRoad
+SimpangNorth SimpangNorth AlexandraNorth
 IstanaNegara IstanaNegara
 HougangCentral HougangCentral DefuIndustrialPark
 PasirRisDrive PasirRisDrive
 PangSua PangSua
 Trafalgar Trafalgar
-Tampines Tampines
-MountPleasant BenoiSector
-ChoaChuKang ChoaChuKang
+Tampines Tampines BukitBatokWest
+BenoiSector BenoiSector
+Saujana ChoaChuKang Saujana
 Moulmein Moulmein
 TiongBahru TiongBahru
 BukitBatokSouth BukitBatokSouth
-Mandai PasirRis Mandai
+Mandai PasirRis Geylang Mandai
 TagoreSindo TagoreSindo
 Shipyard Shipyard PasirRisPark
-JurongPort JurongPort
+JurongPort JurongPort JooSengPayaLebar
 ClementiNorth ClementiNorth
 GeylangEast GeylangEast
+Khatib Khatib
 Matilda Matilda
 Brickworks Brickworks
-PengSiang BukitBatokWest
 Aljunied Aljunied
-SerangoonGarden SerangoonGarden
-PasirPanjang2 SerangoonCentral
+SerangoonGarden SerangoonGarden SingaporeRiver
+SerangoonCentral SerangoonCentral
 PearlsHill PearlsHill
-SembawangHills SembawangHills
-SingaporeRiver SingaporeRiver
-Saujana BoatQuay Saujana
+Dunearn SembawangHills
+BoatQuay BoatQuay
 BoonLayPlace BoonLayPlace
-EvertonPark EvertonPark ReservoirView
+EvertonPark EvertonPark
 PeiChun PeiChun
 PunggolField PunggolField
-InstitutionHill InstitutionHill
+Sentosa Sentosa
+Chatsworth InstitutionHill Chatsworth
 TohGuan TohGuan
-DhobyGhaut DhobyGhaut
-JooSengPayaLebar JooSengPayaLebar
+KianTeck DhobyGhaut
+ReservoirView ReservoirView
 DairyFarm DairyFarm
 PulauPunggolTimor PulauPunggolTimor
-PayaLebarNorth Tanglin
+Tanglin Tanglin
 UluPandan UluPandan YioChuKangEast
-TampinesNorth TampinesNorth
+HougangEast TampinesNorth
 TuasBay TuasBay
-Geylang Geylang
-Cairnhill Cairnhill
-Sembawang Sembawang
+WoodlandsSouth Cairnhill
 WoodlandsWest WoodlandsWest
-OneNorth OneNorth
+Anson OneNorth
 BukitTimah Port
 ChinaSquare ChinaSquare
 JurongWestCentral JurongWestCentral
-PeoplesPark PeoplesPark BayfrontSubzone
-MandaiEast MandaiEast
+PeoplesPark PeoplesPark
+PasirPanjang1 MandaiEast
 NatureReserve ChangiWest
+BayfrontSubzone BayfrontSubzone
 KebunBahru KebunBahru
 Kembangan Kembangan
 OrangeGrove OrangeGrove
 ChangiPoint ChangiPoint
-Boulevard RochorCanal
-Chatsworth Chatsworth
+SouthernIslands SouthernIslands
+RochorCanal RochorCanal

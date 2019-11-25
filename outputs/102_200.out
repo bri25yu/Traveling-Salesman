@@ -1,5 +1,5 @@
-FacultyClub Library FPF SutardjaDai PhysicsLibrary HealthServices Evans EastAsianLibrary FacultyClub EarthquakeLibrary Morrison Spieker Stern Sproul BanwayBuilding BerkeleyLawLibrary CITRIS Giauque Extension BancroftDance Mulford Hildebrand MathLibrary SpringerGateway LeConte Stephens OBrien Birge Stephens LeConte Campbell IRLE AlumniHouse EastGate Durham HaasClubhouse Unit3 EngineeringLibrary FoundersRock SEAsianLibrary RegionalLibrary BioscienceLibrary Jacobs OptometryLibrary HearstFountain Stanley VLSB MartinezCommons PacificFilmArchive Cheit Latimer SummerSession MaxwellField MartinezCommons VisualCenter AndersenAuditorium UniversityHouse CesarChavez Warren Durant Soda Durant EngineeringLibrary Unit3 BerkeleyWayWest LatinAmerican Wellman CareerCenter Wellman Wheeler EnergyBuilding IdaHouse WomensFacultyClub Durham ArtHistoryLibrary Boalt LawSchool Koshland LawSchool SatherGate MSRI McCone VisitorCenter HearstFieldAnnex NewspapersLibrary StudentUnion AnthropologyLibrary MemorialStadium LawrenceofScience EthnicLibrary SproulPlaza MelvinLaboratory Investigative MediaCenter UpperHearstParking MediaCenter InnovationStudio DonnerLaboratory Hilgard EthnicLibrary HearstGreekTheatre Senior StowPlaza SimpsonCenter PublicAffairs FoxCottage Davis InternationalHouse StowPlaza Senior Bechtel Chou AquaticCenter Bowles FacultyClub MLK WooHonFai BrainImagingCenter SocialLibrary Manville EarthLibrary TAAP JacksonHouse Underhill Etcheverry Underhill JacksonHouse TAAP NorthGate TheGlade HearstGym Pimentel BancroftLibrary FacultyClub
-100
+FacultyClub EarthquakeLibrary Morrison Spieker CITRIS BerkeleyLawLibrary BanwayBuilding Sproul Koshland MathLibrary Hildebrand Mulford BancroftDance AlumniHouse ArtHistoryLibrary Durham HaasClubhouse Unit3 BerkeleyWayWest SpringerGateway IRLE Campbell LeConte Birge Stephens OBrien EnergyBuilding Wellman Wheeler CareerCenter Soda Durant CesarChavez UniversityHouse Warren FoundersRock EngineeringLibrary SEAsianLibrary BioscienceLibrary Jacobs OptometryLibrary AnthropologyLibrary StudentUnion LawrenceofScience SproulPlaza Etcheverry Underhill EthnicLibrary MelvinLaboratory Investigative InnovationStudio UpperHearstParking MediaCenter DonnerLaboratory Hilgard HearstGreekTheatre StowPlaza AnnaHeadAlumnae InternationalHouse Davis FoxCottage SimpsonCenter Latimer SummerSession Tan VisualCenter PacificFilmArchive Cheit MartinezCommons VLSB HearstFountain Stanley OptometryLibrary NewspapersLibrary HearstFieldAnnex McCone Boalt LawSchool MSRI AquaticCenter Bowles Bechtel WooHonFai BrainImagingCenter SocialLibrary Manville TAAP EarthLibrary NorthGate Pimentel PhysicsLibrary EastAsianLibrary HealthServices FPF Library BancroftLibrary SutardjaDai MLK FacultyClub
+94
 FacultyClub FacultyClub
 BioscienceLibrary BioscienceLibrary
 SutardjaDai SutardjaDai
@@ -10,10 +10,9 @@ StudentUnion StudentUnion
 EarthquakeLibrary EarthquakeLibrary
 UniversityHouse UniversityHouse
 LawrenceofScience LawrenceofScience
-Pimentel Pimentel
+Pimentel Pimentel HearstGym
 Mulford Mulford
 CareerCenter CareerCenter
-HearstGym HearstGym
 Durham Durham
 OBrien OBrien
 Library Library
@@ -29,13 +28,13 @@ Koshland Koshland
 Jacobs Jacobs
 Investigative Investigative
 EarthLibrary EarthLibrary
-EnergyBuilding EnergyBuilding
+EnergyBuilding EnergyBuilding IdaHouse
 MediaCenter MediaCenter
 StowPlaza StowPlaza
 MartinezCommons MartinezCommons
 MelvinLaboratory MelvinLaboratory
-BancroftDance BancroftDance
-AndersenAuditorium AndersenAuditorium
+BancroftDance BancroftDance Giauque
+Tan AndersenAuditorium
 Unit3 Unit3
 AnthropologyLibrary AnthropologyLibrary
 Stephens Stephens
@@ -52,7 +51,7 @@ NewspapersLibrary NewspapersLibrary
 Warren Warren
 PhysicsLibrary PhysicsLibrary
 CesarChavez CesarChavez
-BerkeleyWayWest BerkeleyWayWest
+BerkeleyWayWest BerkeleyWayWest LatinAmerican
 MSRI MSRI
 HealthServices HealthServices
 WooHonFai WooHonFai
@@ -60,7 +59,7 @@ TAAP TAAP
 MathLibrary MathLibrary
 AquaticCenter AquaticCenter
 UpperHearstParking UpperHearstParking
-Evans Evans
+EastAsianLibrary Evans EastAsianLibrary
 BancroftLibrary BancroftLibrary
 HearstFieldAnnex HearstFieldAnnex
 HearstFountain HearstFountain
@@ -69,29 +68,24 @@ Underhill Underhill
 Campbell Campbell
 Davis Davis
 NorthGate NorthGate
-Giauque Giauque
 AlumniHouse AlumniHouse
 Bowles Bowles
 Wellman Wellman
 VLSB VLSB
-Senior Senior
+EthnicLibrary Senior EthnicLibrary
 Stanley Stanley
 SocialLibrary SocialLibrary
-EastAsianLibrary EastAsianLibrary
 SimpsonCenter SimpsonCenter
-EthnicLibrary EthnicLibrary
 FoxCottage FoxCottage
 Hildebrand Hildebrand
-MaxwellField MaxwellField
+SummerSession MaxwellField
 SEAsianLibrary SEAsianLibrary
-IdaHouse IdaHouse
 Bechtel Bechtel
 BanwayBuilding BanwayBuilding
 EngineeringLibrary EngineeringLibrary
 Durant Durant
 Soda Soda
 McCone McCone
-LatinAmerican LatinAmerican
 VisualCenter VisualCenter
 LawSchool LawSchool
 LeConte LeConte
