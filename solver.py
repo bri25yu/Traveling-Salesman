@@ -138,7 +138,12 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         # if flow goes over an edge, we must take it as well
         for i in L:
             for j in L:
-                model += edge_taken[i][j] * nTas >= flow_over_edge[i][j]
+                shortest_path = shortest_paths[starting_car_index][i]
+                r_val = 0
+                for l in shortest_path:
+                    if l in home_indices:
+                        r_val+=1
+                model += edge_taken[i][j] * (nTas - r_val) >= flow_over_edge[i][j]
 
     print(model.constrs)
     status = model.optimize(max_seconds=60*15)
