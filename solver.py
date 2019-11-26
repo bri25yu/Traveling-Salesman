@@ -11,6 +11,10 @@ from mip import Model, xsum, minimize, BINARY, INTEGER, GUROBI, OptimizationStat
 from itertools import product
 
 from student_utils import *
+from output_validator import tests
+
+from random import shuffle
+
 """
 ======================================================================
   Complete the following function.
@@ -48,6 +52,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
 
     model = Model()
     model.threads = 8
+    model.emphasis = 2
 
     edge_taken = [[model.add_var(var_type=BINARY) for j in L] for i in L]
     drop_ta_at_stop = [[model.add_var(var_type=BINARY) for stop in L] for ta in tas]
@@ -80,7 +85,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
 
     if False: # MCF formulation
         ta_over_edge = [[[model.add_var(var_type=BINARY) for ta in tas] for j in L] for i in L]
-        
+
         # each TA gets dropped off at their stop
         for node in (set(L) - {starting_car_index}):
             for ta in tas:
@@ -111,7 +116,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
                 for ta in tas:
                     model += edge_taken[i][j] >= ta_over_edge[i][j][ta]
     else: # SCF formulation
-        flow_over_edge = [[model.add_var(var_type=INTEGER) for j in L] for i in L]
+        flow_over_edge = [[model.add_var() for j in L] for i in L]
 
         # flow decreases only when TAs are dropped off
         for node in (set(L) - {starting_car_index}):
@@ -141,7 +146,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
                 model += edge_taken[i][j] * nTas >= flow_over_edge[i][j]
 
     print(model.constrs)
-    status = model.optimize(max_seconds=60*30)
+    status = model.optimize(max_seconds=15*60)
     if model.num_solutions > 0:
         edge_graph = nx.DiGraph()
         print("Edges taken:")
@@ -152,7 +157,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
                     edge_graph.add_edge(i, j)
                     print(i, j, G.edges[i, j]["weight"])
                     count += 1
-        
+
         if count == 0:
             print("Path is empty")
             path = [starting_car_index]
@@ -223,7 +228,22 @@ def solve_from_file(input_file, output_directory, params=[]):
         sol = solve(list_locations, list_houses, starting_car_location, adjacency_matrix, params=params)
         if sol:
             car_path, drop_offs, is_optimal = sol
-            convertToFile(car_path, drop_offs, output_file, list_locations)
+            G, _ = adjacency_matrix_to_graph(adjacency_matrix)
+            cost, _ = cost_of_solution(G, car_path, drop_offs)
+
+            is_better = True
+            if os.path.exists(output_file):
+                existing_cost, _ = tests(input_data, utils.read_file(output_file))
+                if existing_cost <= cost:
+                    is_better = False
+                    print("Existing solution has lower cost, " + str(existing_cost) + " <= " + str(cost))
+                else:
+                    print("Lower cost, " + str(cost) + " < " + str(existing_cost))
+
+            if is_better:
+                convertToFile(car_path, drop_offs, output_file, list_locations)
+
+            # may have proven an existing solution to be optimal
             utils.write_to_file(output_file + ".optimal", str(is_optimal))
         else:
             print("no feasible solution")
@@ -231,7 +251,7 @@ def solve_from_file(input_file, output_directory, params=[]):
 
 def solve_all(input_directory, output_directory, params=[]):
     input_files = utils.get_files_with_extension(input_directory, (params[0] if len(params) > 0 else '') + '.in')
-
+    shuffle(input_files)
     for input_file in input_files:
         solve_from_file(input_file, output_directory, params=params)
 
