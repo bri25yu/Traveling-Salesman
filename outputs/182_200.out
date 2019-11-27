@@ -1,6 +1,6 @@
-YuhuaEast Sennett SerangoonGarden Sennett ChinaSquare SerangoonNorth TagoreSindo Punggol BayfrontSubzone PeoplesPark OrangeGrove Matilda ClarkeQuay Shipyard SembawangStraits OneTreeHill HongKah Kembangan LoyangEast SenokoSouth ClementiNorth EvertonPark ReservoirView PulauPunggolTimor Paterson SimpangNorth Khatib BukitTimah AngMoKioTownCentre Anson ClementiWest IstanaNegara BedokNorth Serangoon Brickworks KampongUbi TelokBlangahRise SungeiKadut HougangCentral Saujana BoatQuay Aljunied YioChuKang WaterwayEast SungeiRoad Commonwealth Chatsworth TuasNorthPioneer WestCoast SouthernIslands HongKahNorth KeatHong Dunearn UluPandan YioChuKangEast SerangoonCentral PasirPanjang2 BukitBatokSouth WoodlandsWest Northland Moulmein Museum TohGuan PayaLebarEast MountPleasant BenoiSector Tanglin TuasPromenade TiongBahru TuasBay PunggolField Woodleigh MountEmily KebunBahru Tampines PengSiang BukitBatokWest DhobyGhaut Cairnhill ChangiPoint Yunnan SenokoWest JooSengPayaLebar JurongPort PeiChun DairyFarm PangSua Kranji MandaiWest NatureReserve Sembawang TampinesNorth Boulevard MandaiEast PearlsHill LowerSeletar BoonLayPlace ChengSan Mandai Simpang CityHall TelokBlangahDrive YuhuaEast
+YuhuaEast TelokBlangahDrive CityHall BedokNorth IstanaNegara ClementiWest Anson AngMoKioTownCentre ChangiPoint WoodlandsSouth KianTeck LittleIndia DhobyGhaut BukitBatokWest PengSiang Tampines KebunBahru MountEmily Woodleigh PunggolField TuasBay TiongBahru SembawangEast PayaLebarNorth Moulmein Museum TohGuan PayaLebarEast MountPleasant BenoiSector Punggol BayfrontSubzone PeoplesPark OrangeGrove Matilda ClarkeQuay Shipyard SembawangStraits OneTreeHill HongKah Kembangan LoyangEast SenokoSouth ClementiNorth EvertonPark ReservoirView PulauPunggolTimor Paterson SimpangNorth Khatib SerangoonCentral PasirPanjang2 BukitBatokSouth WoodlandsWest Northland Mountbatten JurongPort PeiChun DairyFarm PangSua Kranji MandaiWest NatureReserve TampinesNorth Boulevard MandaiEast PearlsHill LowerSeletar BoonLayPlace ChengSan Mandai ClementiCentral Serangoon UluPandan Dunearn KeatHong HongKahNorth SouthernIslands WestCoast TuasNorthPioneer Chatsworth Commonwealth SungeiRoad WaterwayEast YioChuKang Aljunied BoatQuay Saujana HougangCentral SungeiKadut TelokBlangahRise KampongUbi Sentosa EastCoast Sembawang TagoreSindo SerangoonNorth ChinaSquare Sennett SerangoonGarden Sennett YuhuaEast
 86
-Northland Northland Mountbatten
+Northland Northland
 HongKah HongKah UpperThomson
 AngMoKioTownCentre AngMoKioTownCentre
 SerangoonNorth SerangoonNorth
@@ -13,12 +13,13 @@ HongKahNorth HongKahNorth
 BedokNorth BedokNorth
 Serangoon Serangoon
 OneTreeHill OneTreeHill Trafalgar
-Sembawang EastCoast Sembawang
+EastCoast EastCoast
 Sennett Sennett
 WaterwayEast WaterwayEast
 SungeiKadut SungeiKadut
-TuasPromenade TuasPromenade
+SembawangEast TuasPromenade
 Museum Museum
+Mountbatten Mountbatten
 PayaLebarEast PayaLebarEast
 LowerSeletar LowerSeletar
 ClarkeQuay BedokSouth
@@ -41,12 +42,12 @@ BukitBatokSouth BukitBatokSouth
 Mandai PasirRis Geylang Mandai
 TagoreSindo TagoreSindo
 Shipyard Shipyard PasirRisPark
-JurongPort JurongPort
+JurongPort JurongPort JooSengPayaLebar
 ClementiNorth ClementiNorth
 MountEmily GeylangEast
 Khatib Khatib
 Matilda Matilda
-Brickworks Brickworks
+KampongUbi Brickworks
 BukitBatokWest BukitBatokWest
 Aljunied Aljunied
 SerangoonGarden SerangoonGarden SingaporeRiver
@@ -58,22 +59,21 @@ BoonLayPlace BoonLayPlace
 EvertonPark EvertonPark
 PeiChun PeiChun
 PunggolField PunggolField
-KampongUbi Sentosa
+Sentosa Sentosa
 Chatsworth InstitutionHill Chatsworth
 DhobyGhaut DhobyGhaut
 ReservoirView ReservoirView
-JooSengPayaLebar JooSengPayaLebar
 DairyFarm DairyFarm
 PulauPunggolTimor PulauPunggolTimor
-Tanglin Tanglin
-UluPandan UluPandan
+PayaLebarNorth Tanglin
+UluPandan UluPandan YioChuKangEast
 TampinesNorth TampinesNorth
 TuasBay TuasBay
-Cairnhill Cairnhill
+WoodlandsSouth Cairnhill
+Sembawang Sembawang
 WoodlandsWest WoodlandsWest
 Anson OneNorth
-YioChuKangEast YioChuKangEast
-BukitTimah Port
+KianTeck Port
 ChinaSquare ChinaSquare
 ClementiWest JurongWestCentral
 PeoplesPark PeoplesPark
