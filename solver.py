@@ -43,7 +43,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
 
     (G, message) = adjacency_matrix_to_graph(adjacency_matrix)
     shortest_paths = nx.floyd_warshall(G)
-    shortest_paths_uw = nx.floyd_warshall(G, weight=None)
+    #shortest_paths_uw = nx.floyd_warshall(G, weight=None)
     L = range(0, len(list_of_locations))
     nL = len(L)
 
@@ -139,12 +139,15 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         # if flow goes over an edge, we must take it as well
         for i in L:
             for j in L:
-                shortest_path = shortest_paths_uw[starting_car_index][i]
-                r_val = 0
-                for l in shortest_path:
-                    if l in home_indices:
-                        r_val+=1
-                model += edge_taken[i][j] * (nTas - r_val) >= flow_over_edge[i][j]
+                shortest_paths = nx.all_simple_paths(G,starting_car_index,i)
+                r_vals = []
+                for path in shortest_paths:
+                    r_val = 0
+                    for node in path:
+                        if node in home_indices:
+                            r_val+=1
+                    r_vals.append(r_val)
+                model += edge_taken[i][j] * (nTas - min(r_vals)) >= flow_over_edge[i][j]
 
     print(model.constrs)
     status = model.optimize(max_seconds=60*15)
