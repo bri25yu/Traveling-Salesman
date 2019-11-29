@@ -1,16 +1,15 @@
-FortCollins Harlingen Knoxville Arlington Independence Bellevue Lakeland CollegeStation Aberdeen Bryan Albany Lorain Clarksville Bradenton Bridgeport McAllen Chicago Clearwater Evansville FortWayne Fairfield Joliet Fairfield Lancaster Lubbock Inglewood Hickory Arvada Fargo Charleston AnnArbor CorpusChristi Bakersfield Cincinnati GulfportBiloxi Leominster Manchester HuntingtonBeach BoiseCity Eugene Bethlehem Beaumont Jacksonville Gilbert Kenosha Barnstable Brownsville Fayetteville Durham DalyCity Houston Fresno Houston GrandRapids Garland Burlington Burbank Cambridge BatonRouge Jefferson LosAngeles Dallas Abilene Greensboro LittleRock Chandler Boston Bloomington Layton LasVegas Kennewick LasVegas Layton Bloomington ColoradoSprings ChulaVista Irving Lacey Detroit Corona Allentown Bremerton Elkhart Champaign Harrisburg ElkGrove Canton KansasCity FortWorth Berkeley FortWorth KansasCity Fullerton Carrollton Frederick Hampton Lafayette Hampton Frederick Carrollton Alexandria Amarillo Kissimmee FortWaltonBeach FortSmith Akron FortCollins
-76
+FortCollins Akron FortSmith FortWaltonBeach Kissimmee Amarillo Kissimmee AppleValley Corona Allentown Bremerton Elkhart Champaign Harrisburg ElkGrove Canton KansasCity FortWorth Berkeley FortWorth KansasCity Fullerton Carrollton Frederick Hampton Lafayette Hampton Kenosha Gilbert Jacksonville Charlotte Kalamazoo Fresno Houston DalyCity Durham Fayetteville Brownsville Barnstable Aberdeen Bryan Albany Garland Burlington Burbank Cambridge BatonRouge Jefferson LosAngeles Dallas Abilene Greensboro LittleRock Chandler Boston Bloomington Layton LasVegas Kennewick LasVegas Layton Bloomington ColoradoSprings Irving Lacey Detroit Beaumont Bethlehem Eugene BoiseCity HuntingtonBeach Manchester Leominster GulfportBiloxi Cincinnati Bakersfield CorpusChristi AnnArbor Charleston Fargo Arvada Hickory Inglewood Lubbock Lancaster Fairfield Joliet Fairfield FortWayne Evansville Clearwater CollegeStation Lakeland Bellevue Independence Arlington Harlingen Knoxville Harlingen FortCollins
+74
 Aberdeen Aberdeen
 Abilene Abilene
 Akron Akron Elizabeth
 Arvada Albuquerque Arvada Erie
-Alexandria Alexandria
+Amarillo Alexandria Amarillo
 Allentown Allentown
-Amarillo Amarillo
 Kennewick Anaheim Kennewick
 Lancaster Anchorage Lancaster
 AnnArbor AnnArbor
-Corona AppleValley
+AppleValley AppleValley
 Fayetteville Appleton Fayetteville
 Manchester Atlanta Manchester
 BatonRouge Augusta
@@ -24,7 +23,7 @@ Berkeley Berkeley ElMonte
 Bethlehem Bethlehem
 CollegeStation Boise CollegeStation ElPaso
 BoiseCity BoiseCity
-Bradenton Bradenton
+Dallas Bradenton Dallas
 Bremerton Bremerton Grayslake
 Lacey Brighton Lacey
 Brownsville Brownsville
@@ -35,9 +34,8 @@ Irving Cary Irving
 Bryan CedarRapids
 Champaign Champaign
 Chandler Chandler
-Chicago Chicago
+Clearwater Chicago
 ColoradoSprings ColoradoSprings
-Dallas Dallas
 DalyCity DalyCity
 Evansville Danbury Evansville
 Canton DavidsonCounty
@@ -53,10 +51,9 @@ FortCollins FortCollins Hollywood
 FortWaltonBeach FortWaltonBeach
 Frederick Frederick
 GulfportBiloxi Fremont
-Fresno Fresno Kalamazoo
-Garland Garland
+Fresno Fresno
+Garland Garland GrandRapids
 Gilbert Gilbert
-GrandRapids GrandRapids
 Hampton Hampton
 Harlingen Harlingen
 Knoxville Hemet Knoxville
@@ -70,9 +67,10 @@ ElkGrove Irvine
 Jacksonville Jacksonville
 Jefferson Jefferson
 Joliet Joliet LasCruces
+Kalamazoo Kalamazoo
 Lafayette Lafayette Lakewood
 Lakeland Lakeland
 Leominster Leominster
 LittleRock LittleRock
-Lorain Lorain
+Albany Lorain
 Lubbock Louisville Lubbock
