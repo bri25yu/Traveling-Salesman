@@ -146,7 +146,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
                 model += edge_taken[i][j] * nTas >= flow_over_edge[i][j]
 
     print(model.constrs)
-    status = model.optimize(max_seconds=60*60)
+    status = model.optimize(max_seconds=3*60*60)
     if model.num_solutions > 0:
         edge_graph = nx.DiGraph()
         print("Edges taken:")
