@@ -1,5 +1,7 @@
 sudo apt-get install -y wget
 
+# press enter
+
 mkdir gurobi
 
 cd gurobi
@@ -14,13 +16,15 @@ export GUROBI_HOME="${HOME}/gurobi/gurobi900/linux64";
 
 export PATH="${PATH}:${GUROBI_HOME}/bin"
 
-export HTTP_PROXY="chabo-125-7.reshall.berkeley.edu:8899" && grbgetkey --http 3579f122-14ba-11ea-b9e1-020d093b5256
+export HTTP_PROXY="chabo-125-7.reshall.berkeley.edu:8899" && grbgetkey --http KEY
 
 # press enter
 
 sudo apt-get install -y git
 
-git clone git@github.com:bri25yu/Traveling-Salesman.git
+# press enter
+
+git clone https://TOKEN@github.com/bri25yu/Traveling-Salesman.git
 
 # press enter
 
@@ -29,6 +33,8 @@ cd Traveling-Salesman
 git checkout without-parth-optimization
 
 sudo apt-get install -y python3-pip
+
+# press enter
 
 pip3 install networkx mip numpy
 
@@ -42,7 +48,11 @@ export PATH="${PATH}:${GUROBI_HOME}/bin"
 
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
 
-export THREAD_COUNT="64" && python3 solver.py --all inputs outputs
+git config --global user.name "cs170-bot"
+
+git config --global user.email "cs170-bot@gcp"
+
+export THREAD_COUNT="32" && python3 solver.py --all inputs outputs
 
 # outside
 
