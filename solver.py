@@ -245,6 +245,9 @@ def solve_from_file(input_file, output_directory, params=[]):
 
             # may have proven an existing solution to be optimal
             utils.write_to_file(output_file + ".optimal", str(is_optimal))
+
+            os.system("git commit -am \"Auto-update solutions\"")
+            os.system("git push")
         else:
             print("no feasible solution")
 

@@ -1,0 +1,41 @@
+sudo apt-get install -y wget
+
+mkdir gurobi
+
+cd gurobi
+
+wget https://packages.gurobi.com/9.0/gurobi9.0.0_linux64.tar.gz
+
+tar xvfz gurobi9.0.0_linux64.tar.gz
+
+cd ..
+
+export HTTP_PROXY="chabo-125-7.reshall.berkeley.edu:8899" && grbgetkey --http INSERT
+
+sudo apt-get install -y git
+
+git clone git@github.com:bri25yu/Traveling-Salesman.git
+
+cd Traveling-Salesman
+
+git checkout without-parth-optimization
+
+sudo apt-get install -y python3-pip
+
+pip3 install networkx
+
+pip3 install mip
+
+pip3 install numpy
+
+sudo apt-get install -y tmux
+
+# in tmux
+
+export GUROBI_HOME="${HOME}/gurobi/gurobi900/linux64";
+
+export PATH="${PATH}:${GUROBI_HOME}/bin"
+
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
+
+export THREAD_COUNT="16" && python3 solver.py --all inputs outputs
