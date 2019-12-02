@@ -51,7 +51,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     nL = len(L)
 
     model = Model()
-    model.threads = 8
+    model.threads = int(os.getenv("THREAD_COUNT", "8"))
     model.emphasis = 2
 
     edge_taken = [[model.add_var(var_type=BINARY) for j in L] for i in L]
