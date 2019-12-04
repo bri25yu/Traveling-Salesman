@@ -52,10 +52,9 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
 
     model = Model()
     model.threads = int(os.getenv("THREAD_COUNT", "8"))
-    model.emphasis = 2
+    model.solver.set_int_param("MIPFocus", 3)
     model.solver.set_int_param("Presolve", 2)
     model.solver.set_int_param("Cuts", 2)
-    model.solver.set_int_param("ConcurrentMIP", 2)
 
     edge_taken = [[model.add_var(var_type=BINARY) for j in L] for i in L]
     drop_ta_at_stop = [[model.add_var(var_type=BINARY) for stop in L] for ta in tas]
