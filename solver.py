@@ -21,7 +21,7 @@ from random import shuffle
 ======================================================================
 """
 
-def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_matrix, params=[]):
+def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_matrix, existing_solution=None, params=[]):
     """
     Write your algorithm here.
     Input:
@@ -86,19 +86,19 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         model += xsum(drop_ta_at_stop[ta][stop] for stop in L) == 1
 
     if True: # MCF formulation
-        ta_over_edge = [[[model.add_var(var_type=BINARY) for ta in tas] for j in L] for i in L]
+        ta_over_edge = [[[model.add_var(var_type=BINARY) if G.has_edge(i, j) else None for ta in tas] for j in L] for i in L]
 
         # each TA gets dropped off at their stop
         for node in (set(L) - {starting_car_index}):
             for ta in tas:
                 ta_entering_node = xsum(
                     ta_over_edge[prev][node][ta]
-                    for prev in L
+                    for prev in L if G.has_edge(prev, node)
                 )
 
                 ta_leaving_node = xsum(
                     ta_over_edge[node][nxt][ta]
-                    for nxt in L
+                    for nxt in L if G.has_edge(node, nxt)
                 )
 
                 ta_dropped_at_stop = drop_ta_at_stop[ta][node]
@@ -107,16 +107,17 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
 
         # each TA must be dropped off somewhere along the route
         for ta in tas:
-            leaving_start = xsum(ta_over_edge[starting_car_index][nxt][ta] for nxt in L)
-            returning_start = xsum(ta_over_edge[prev][starting_car_index][ta] for prev in L)
+            leaving_start = xsum(ta_over_edge[starting_car_index][nxt][ta] for nxt in L if G.has_edge(starting_car_index, nxt))
+            returning_start = xsum(ta_over_edge[prev][starting_car_index][ta] for prev in L  if G.has_edge(prev, starting_car_index))
             model += leaving_start == 1 - drop_ta_at_stop[ta][starting_car_index] # drop TA off right before we leave
             model += returning_start == 0
 
         # if a TA goes over an edge, we must take it as well
         for i in L:
             for j in L:
-                for ta in tas:
-                    model += edge_taken[i][j] >= ta_over_edge[i][j][ta]
+                if G.has_edge(i, j):
+                    for ta in tas:
+                        model += edge_taken[i][j] >= ta_over_edge[i][j][ta]
     else: # SCF formulation
         flow_over_edge = [[model.add_var() for j in L] for i in L]
 
@@ -147,7 +148,24 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
             for j in L:
                 model += edge_taken[i][j] * nTas >= flow_over_edge[i][j]
 
-    print(model.constrs)
+    if existing_solution:
+        print("Supplying existing solution")
+        initial_solution = []
+        car_cycle = existing_solution[0]
+        for i in range(len(car_cycle) - 1):
+            start = location_name_to_index[car_cycle[i]]
+            end = location_name_to_index[car_cycle[i + 1]]
+            initial_solution.append((edge_taken[start][end], 1))
+
+        num_dropoffs = int(existing_solution[1][0])
+        for i in range(num_dropoffs):
+            dropoff = existing_solution[i + 2]
+            drop_location = dropoff[0]
+            drop_homes = dropoff[1:]
+            for home in drop_homes:
+                initial_solution.append((drop_ta_at_stop[home_indices.index(location_name_to_index[home])][location_name_to_index[drop_location]], 1))
+        model.start = initial_solution
+
     status = model.optimize(max_seconds=24*60*60)
     if model.num_solutions > 0:
         edge_graph = nx.DiGraph()
@@ -227,7 +245,10 @@ def solve_from_file(input_file, output_directory, params=[]):
     else:
         input_data = utils.read_file(input_file)
         num_of_locations, num_houses, list_locations, list_houses, starting_car_location, adjacency_matrix = data_parser(input_data)
-        sol = solve(list_locations, list_houses, starting_car_location, adjacency_matrix, params=params)
+        if os.path.exists(output_file):
+            sol = solve(list_locations, list_houses, starting_car_location, adjacency_matrix, utils.read_file(output_file), params=params)
+        else:
+            sol = solve(list_locations, list_houses, starting_car_location, adjacency_matrix, params=params)
         if sol:
             car_path, drop_offs, is_optimal = sol
             G, _ = adjacency_matrix_to_graph(adjacency_matrix)
