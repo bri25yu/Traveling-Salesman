@@ -85,7 +85,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     for ta in tas:
         model += xsum(drop_ta_at_stop[ta][stop] for stop in L) == 1
 
-    if False: # MCF formulation
+    if True: # MCF formulation
         ta_over_edge = [[[model.add_var(var_type=BINARY) for ta in tas] for j in L] for i in L]
 
         # each TA gets dropped off at their stop
@@ -148,7 +148,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
                 model += edge_taken[i][j] * nTas >= flow_over_edge[i][j]
 
     print(model.constrs)
-    status = model.optimize(max_seconds=12*60*60)
+    status = model.optimize(max_seconds=24*60*60)
     if model.num_solutions > 0:
         edge_graph = nx.DiGraph()
         print("Edges taken:")
