@@ -82,7 +82,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
     for ta in tas:
         model += xsum(drop_ta_at_stop[ta][stop] for stop in L) == 1
 
-    if True: # MCF formulation
+    if False: # MCF formulation
         ta_over_edge = [[[model.add_var(var_type=BINARY) if G.has_edge(i, j) else None for ta in tas] for j in L] for i in L]
 
         # each TA gets dropped off at their stop
