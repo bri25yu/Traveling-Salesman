@@ -16,7 +16,7 @@ export GUROBI_HOME="${HOME}/gurobi/gurobi900/linux64";
 
 export PATH="${PATH}:${GUROBI_HOME}/bin"
 
-export HTTP_PROXY="chabo-125-7.reshall.berkeley.edu:8899" && grbgetkey --http KEY
+export HTTP_PROXY="local-berkeley-computer" && grbgetkey --http KEY
 
 # press enter
 
