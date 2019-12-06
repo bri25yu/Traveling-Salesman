@@ -52,6 +52,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
 
     model = Model()
     model.threads = int(os.getenv("THREAD_COUNT", "8"))
+    model.max_gap = 0.000001
 
     edge_taken = [[model.add_var(var_type=BINARY) for j in L] for i in L]
     drop_ta_at_stop = [[model.add_var(var_type=BINARY) for stop in L] for ta in tas]
@@ -232,10 +233,10 @@ def solve_from_file(input_file, output_directory, params=[]):
     output_file = utils.input_to_output(input_file, output_directory)
     optimal_tracker = output_file + ".optimal"
 
-    existing_optimal = ((not os.path.exists(optimal_tracker)) or (utils.read_file(optimal_tracker)[0][0] == "True") or (utils.read_file(optimal_tracker)[0][0] == "Slow"))
+    existing_optimal = (os.path.exists(optimal_tracker)) and ((utils.read_file(optimal_tracker)[0][0] == "True") or (utils.read_file(optimal_tracker)[0][0] == "Slow"))
     if os.path.exists(output_file) and existing_optimal:
-        if not os.path.exists(optimal_tracker):
-            utils.write_to_file(output_file + ".optimal", str(True))
+        # if not os.path.exists(optimal_tracker):
+        #     utils.write_to_file(output_file + ".optimal", str(True))
         print("Skipping, already solved optimal")
     elif os.path.exists(output_file) and False:
         print("Skipping non-optimal")
@@ -266,9 +267,9 @@ def solve_from_file(input_file, output_directory, params=[]):
             # may have proven an existing solution to be optimal
             utils.write_to_file(output_file + ".optimal", str(is_optimal))
 
-            os.system("git pull")
-            os.system("git commit -am \"Auto-update solutions\"")
-            os.system("git push")
+            # os.system("git pull")
+            # os.system("git commit -am \"Auto-update solutions\"")
+            # os.system("git push")
         else:
             print("no feasible solution")
 
