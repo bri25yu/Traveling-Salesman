@@ -52,7 +52,7 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
 
     model = Model()
     model.threads = int(os.getenv("THREAD_COUNT", "8"))
-    model.max_gap = 0.000001
+    model.max_gap = 0.00000001
 
     edge_taken = [[model.add_var(var_type=BINARY) for j in L] for i in L]
     drop_ta_at_stop = [[model.add_var(var_type=BINARY) for stop in L] for ta in tas]
